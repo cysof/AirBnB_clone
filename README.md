@@ -1,7 +1,7 @@
 0x00. AirBnB clone - The console
 Group projectPythonOOP
 
-    By: Guillaume
+    By: Cysoft
     Weight: 5
     Project to be done in teams of 2 people (your team: Cysoft Ogbu, Damilola Adekoya)
     Project will start Jan 8, 2024 6:00 AM, must end by Jan 15, 2024 6:00 AM
