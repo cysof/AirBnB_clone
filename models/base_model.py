@@ -3,6 +3,7 @@
 import models
 import uuid
 from datetime import datetime
+from models.engine.file_storage import storage
 
 """ BaseModel Module this is a Parent class for all other classes
 that will be created in the project.
@@ -54,6 +55,8 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = self.created_at
+            storage.new(self)
+
 
 def __str__(self):
     """
@@ -68,6 +71,7 @@ def save(self):
     """Updates the `updated_at` attribute with the current datetime.
         """
     self.updated_at = datetime.now()
+    storage.save()
 
 def to_dict(self):
     obj_dict = self.__dict__.copy()
