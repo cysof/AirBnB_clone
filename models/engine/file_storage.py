@@ -6,10 +6,15 @@
     this serialize instance into JSON file and further deserialize JSON File to instance
 
 """
-import os
+
+
+
+import models
 import json
 from datetime import datetime
 from models.base_model import BaseModel
+import os
+
 
 class FileStorage:
 
@@ -29,6 +34,10 @@ class FileStorage:
     __file_path = "file.json"
     __objects = {}
 
+    CLASS_MAP = {"BaseModel": BaseModel,}
+
+
+
     def all(self):
         """
             Dictionary of stored object
@@ -38,6 +47,7 @@ class FileStorage:
             Return: the dictionary returns __objects
         """
         return self.__objects
+
     def new(self, obj):
         """Adds an object to the stored objects.
             Args:
@@ -59,24 +69,15 @@ class FileStorage:
             json.dump(serialized, Myfile)
 
     def reload(self):
-
-        """
-        Deseializes to Json file
-            deserializes the JSON file to restore stored objects.
+        """Deserializes the JSON file to restore stored objects.
         (only if the JSON file (__file_path) exists.
-
-        """ 
-
+        """
         if os.path.exists(self.__file_path):
             try:
-                with open(self.__file_path, mode='r', encoding='utf-8') as Myfile:
-                    data = json.load(Myfile)
-
+                with open(self.__file_path, mode='r') as my_file:
+                    data = json.load(my_file)
                 for key, value in data.items():
-                    class_name, obj_id = key.split('.')
-                    class_obj = globals()[class_name]
-                    obj_instance = class_obj(**value)
-                    self.__objects[key] = obj_instance
-
-            except (FileNotFoundError, json.JSONDecodeError) as e:
+                    obj = self.CLASS_MAP[value['__class__']](**value)
+                    self.__objects[key] = obj
+            except (FileNotFoundError, json.JSONDecodeError, PermissionError) as e:
                 pass
