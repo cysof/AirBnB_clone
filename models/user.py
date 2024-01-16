@@ -11,7 +11,7 @@ class User(BaseModel):
     """User class that inherits from BaseModel.
     Creates the User profile to use AirBnB
     """
-    email = str""
-    password = str""
-    first_name = str""
-    last_name = str""
+    email = ""
+    password = ""
+    first_name = ""
+    last_name = ""
