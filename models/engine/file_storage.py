@@ -1,23 +1,22 @@
 #!/usr/bin/python3
 
-"""
-    Filestorage Module:
-
-    this serialize instance into JSON file and further deserialize JSON File to instance
-
+"""FileStorage Module that serializes instances to a JSON file
+and deserializes JSON file to instances:
 """
 
-
-
-import models
 import json
 from datetime import datetime
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.place import Place
+from models.amenity import Amenity
+from models.review import Review
 import os
 
 
 class FileStorage:
-
     """FileStorage class for serializing and deserializing instances
     to/from a JSON file.
 
@@ -33,40 +32,34 @@ class FileStorage:
 
     __file_path = "file.json"
     __objects = {}
-
-    CLASS_MAP = {"BaseModel": BaseModel,}
-
-
+    # list to hold all classes created
+    CLASS_MAP = {"BaseModel": BaseModel, "User": User,
+                  "State": State, "City": City, "Place": Place,
+                  "Amenity": Amenity, "Review": Review}
 
     def all(self):
-        """
-            Dictionary of stored object
-
-            this method returns dictionary of stored objects
-
-            Return: the dictionary returns __objects
+        """Returns the dictionary of stored objects.
+        Returns:
+            dict: A dictionary of objects.
         """
         return self.__objects
 
     def new(self, obj):
         """Adds an object to the stored objects.
-            Args:
-                obj: The object to be added.
-            """
-        key = "{}.{}".format(obj.__class__.__name__,obj.id)
+        Args:
+            obj: The object to be added.
+        """
+        key = "{}.{}".format(obj.__class__.__name__, obj.id)
         self.__objects[key] = obj
 
     def save(self):
-        """
-        Serializes stored objects to the JSON file.
-
+        """Serializes stored objects to the JSON file.
         """
         serialized = {}
-
         for key, value in self.__objects.items():
             serialized[key] = value.to_dict()
-        with open(self.__file_path, mode='w', encoding='utf-8') as Myfile:
-            json.dump(serialized, Myfile)
+        with open(self.__file_path, mode="w", encoding="utf-8") as my_file:
+            json.dump(serialized, my_file)
 
     def reload(self):
         """Deserializes the JSON file to restore stored objects.
@@ -79,5 +72,5 @@ class FileStorage:
                 for key, value in data.items():
                     obj = self.CLASS_MAP[value['__class__']](**value)
                     self.__objects[key] = obj
-            except (FileNotFoundError, json.JSONDecodeError, PermissionError) as e:
+            except FileNotFoundError:
                 pass
