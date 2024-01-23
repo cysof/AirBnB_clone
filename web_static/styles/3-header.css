@@ -1,9 +1,9 @@
 header {
-	height: 70px;
-	width: 100%;
-	background-color: white;
-	border-bottom: 1px #CCCCCC;
-	background-image: url("../images/hbnb-logo.png");
-	background-repeat: no-repeat;
-	background-position: 20px center;
+  height: 70px;
+  width: 100%;
+  background-color: white;
+  border-bottom: 1px #cccccc;
+  background-image: url("../images/hbnb-logo.png");
+  background-repeat: no-repeat;
+  background-position: 20px center;
 }
