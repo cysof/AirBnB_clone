@@ -1,0 +1,90 @@
+.places {
+  text-align: center;
+}
+
+.places h1 {
+  font-size: 30px;
+  text-align: left;
+}
+
+.places article {
+  width: 390px;
+  border: 1px solid #ff5a5f;
+  border-radius: 4px;
+  margin: 20px;
+  padding: 20px;
+  position: relative;
+}
+
+.article_box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.places article h2 {
+  font-size: 30px;
+  margin: 0;
+}
+
+section.places div.price_by_night {
+  position: absolute;
+  color: #ff5a5f;
+  min-width: 60px;
+  height: 60px;
+  font-size: 30px;
+  border: 4px solid #ff5a5f;
+  border-radius: 100vw;
+  line-height: 60px;
+  top: 20px;
+  right: 20px;
+  /* text-align: center; */
+  /* seems redundant since text is already well placed, we'll see */
+}
+
+section.places div.information {
+  height: 80px;
+  border-top: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
+  display: flex;
+  justify-content: space-around;
+  margin: 48px 0 16px 0;
+}
+
+section.places div.max_guest,
+section.places div.number_bathrooms,
+section.places div.number_rooms {
+  width: 100px;
+  background-repeat: no-repeat;
+  background-position: 50% 5px;
+}
+
+section.places div.max_guest h4,
+section.places div.number_bathrooms h4,
+section.places div.number_rooms h4 {
+  margin-top: 50px;
+  padding-top: 8px;
+}
+
+.max_guest {
+  background-image: url("../images/num-of-guests.png");
+}
+
+.number_rooms {
+  background-image: url("../images/no-of-bedrooms.png");
+}
+
+.number_bathrooms {
+  background-image: url("../images/no-of-bathrooms.png");
+}
+
+section.places div.user,
+section.places div.description {
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+section.places div.description h3 {
+  font-weight: 300;
+  font-size: 14px;
+}

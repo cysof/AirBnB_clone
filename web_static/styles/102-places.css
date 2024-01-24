@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+  padding: 0;
+  color: #484848;
+  font-size: 14px;
+  font-family: Circular, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  position: relative;
+  /* height: 100vh; */
+}
+
+div.container {
+  max-width: 1000px;
+  margin: 30px auto;
+}
+
+/* Media Query for mobile */
+@media screen and (max-width: 520px) {
+  div.container {
+    max-width: 480px;
+    margin: 20px auto;
+  }
+}
